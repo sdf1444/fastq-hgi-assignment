@@ -9,6 +9,12 @@ def sequence_count(file):
   num_sequences = len([line for line in file_contents.split("\n") if line.strip() != ""]) // 4
   return num_sequences
 
+# Define a function that takes the path to a FASTQ file and returns the number of nucleotides in the file
+def nucleotide_count(file):
+  with open(file) as f:
+    num_nucleotides = 0
+    in_sequence = False  # flag to track if currently in a sequence
+
 if __name__ == "__main__":
   # Create an argument parser with a description and two arguments: the path to the FASTQ file and a flag to get the number of sequences
   parser = argparse.ArgumentParser(description="Get information about a FASTQ file")
