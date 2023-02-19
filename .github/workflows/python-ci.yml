@@ -3,7 +3,7 @@ name: Python CI
 on:
   push:
     branches:
-      - user-story2
+      - user-story3
 
 jobs:
   build:
@@ -23,9 +23,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: |
-          pytest tests/test_nucleotide_count.py
-          pytest tests/test_multiline_nucleotide_count.py
+        run: pytest
 
       - name: Merge branch to main
         run: |
@@ -33,11 +31,11 @@ jobs:
           git config --global user.email ${{ secrets.USER_EMAIL }}
           git config --global user.name ${{ secrets.USER_NAME }}
           git checkout main
-          git merge -X theirs user-story2 --allow-unrelated-histories
+          git merge -X theirs user-story3 --allow-unrelated-histories
 
       - name: Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           git push origin main
-          git push origin --delete user-story2
+          git push origin --delete user-story3
