@@ -14,6 +14,9 @@ def nucleotide_count(file):
   with open(file) as f:
     num_nucleotides = 0
     in_sequence = False  # flag to track if currently in a sequence
+    for line in f:
+      if line.startswith("@"):  # if the line starts with "@", then it's a read header
+        in_sequence = True  # set the flag to indicate that we're in a sequence
 
 if __name__ == "__main__":
   # Create an argument parser with a description and two arguments: the path to the FASTQ file and a flag to get the number of sequences
