@@ -20,7 +20,10 @@ def nucleotide_count(file):
       elif in_sequence:  # if we're in a sequence
         if not line.startswith("+"):  # if the line doesn't start with "+", it's a sequence line
           num_nucleotides += len(line.strip())  # add the length of the line to the nucleotide count
-
+        else:  # if the line starts with "+", it's a quality score line
+          in_sequence = False  # set the flag to indicate that we've finished the sequence
+  return num_nucleotides
+  
 if __name__ == "__main__":
   # Create an argument parser with a description and two arguments: the path to the FASTQ file and a flag to get the number of sequences
   parser = argparse.ArgumentParser(description="Get information about a FASTQ file")
